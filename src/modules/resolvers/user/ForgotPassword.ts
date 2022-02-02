@@ -1,16 +1,23 @@
 import { Arg, Mutation, Resolver } from "type-graphql";
+import { Service } from "typedi";
+import { InjectRepository } from "typeorm-typedi-extensions";
 import { v4 } from "uuid";
-import { User } from "../../../entity/User";
 import { redis } from "../../../redis";
 import { sendEmail } from "../../../utils/sendEmail";
 import { forgetPasswordPrefix } from "../../constants/redisprefixes";
+import { UserRepository } from "../../repositories/UserRepository";
 
 @Resolver()
+@Service()
 export class ForgotPasswordResolver {
+
+    @InjectRepository(UserRepository)
+    private readonly userRepo: UserRepository;
+
     @Mutation(() => Boolean)
     async forgotPassword(@Arg("email") email: string): Promise<boolean> {
 
-        const user = await User.findOne({ where: {email}});
+        const user = await this.userRepo.findOne({ where: {email}});
 
         if (!user) {
             return true; // could throw error but probs not safe for security

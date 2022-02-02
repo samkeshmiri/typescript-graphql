@@ -1,9 +1,9 @@
 import { Field, ObjectType, ID, Root } from "type-graphql";
-import {Entity, PrimaryGeneratedColumn, Column, BaseEntity} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 
 @ObjectType() // make it a type in gql and choose the Fields() we expose to the query
 @Entity()
-export class User extends BaseEntity{
+export class User {
 
     @Field(() => ID) // return ID type from gql use with apollo cache
     @PrimaryGeneratedColumn() // each entity must have a primary key - this one is auto genned ("uuid") // will gen a uuid
