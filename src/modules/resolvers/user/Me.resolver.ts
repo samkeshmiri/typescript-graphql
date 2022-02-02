@@ -1,7 +1,7 @@
 import { Ctx, Query, Resolver } from "type-graphql";
-import { User } from "../../entity/User";
+import { User } from "../../../entity/User";
 import { MyContext } from "src/types/MyContext";
-import { UserRepository } from "../repositories/UserRepository";
+import { UserRepository } from "../../repositories/UserRepository";
 import { InjectRepository } from "typeorm-typedi-extensions";
 import { Service } from "typedi";
 

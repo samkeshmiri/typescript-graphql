@@ -1,6 +1,6 @@
 import { IsEmail, Length} from "class-validator";
 import { Field, InputType } from "type-graphql";
-import { PasswordInput } from "../../shared/PasswordInput";
+import { PasswordInput } from "../../../shared/PasswordInput";
 
 @InputType() // creates input gql type
 export class RegisterInput extends PasswordInput { // no multiple inheritence in TS

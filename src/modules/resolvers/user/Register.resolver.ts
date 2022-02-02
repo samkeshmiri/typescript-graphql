@@ -1,12 +1,12 @@
 import { Arg, Mutation, Query, Resolver, UseMiddleware } from "type-graphql";
 import bcrypt from 'bcryptjs';
-import { User } from "../../entity/User";
+import { User } from "../../../entity/User";
 import { RegisterInput } from "./Register/RegisterInput";
-import { isAuth } from "../middleware/isAuth";
-import { logger } from "../middleware/logger";
+import { isAuth } from "../../middleware/isAuth";
+import { logger } from "../../middleware/logger";
 // import { createConfirmationUrl } from "../../utils/createConfirmationUrl";
 // import { sendEmail } from "../../utils/sendEmail";
-import { UserRepository } from "../repositories/UserRepository";
+import { UserRepository } from "../../repositories/UserRepository";
 import { InjectRepository } from "typeorm-typedi-extensions";
 import { Service } from "typedi";
 

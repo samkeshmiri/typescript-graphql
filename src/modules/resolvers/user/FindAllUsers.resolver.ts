@@ -1,8 +1,8 @@
 import { Query, Resolver } from "type-graphql";
 import { Service } from "typedi";
 import { InjectRepository } from "typeorm-typedi-extensions";
-import { User } from "../../entity/User";
-import { UserRepository } from "../repositories/UserRepository";
+import { User } from "../../../entity/User";
+import { UserRepository } from "../../repositories/UserRepository";
 
 
 @Resolver()

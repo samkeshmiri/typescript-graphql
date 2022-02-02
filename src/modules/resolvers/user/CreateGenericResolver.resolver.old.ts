@@ -1,6 +1,6 @@
 import { Arg, ClassType, Field, InputType, Mutation, Resolver } from "type-graphql";
-import { Product } from "../../entity/Product";
-import { User } from "../../entity/User";
+import { Product } from "../../../entity/Product";
+import { User } from "../../../entity/User";
 import { RegisterInput } from "./Register/RegisterInput";
 
 

@@ -1,9 +1,9 @@
 import { Arg, Ctx, Mutation, Resolver } from "type-graphql";
 import bcrypt from 'bcryptjs';
-import { User } from "../../entity/User";
+import { User } from "../../../entity/User";
 import { MyContext } from "src/types/MyContext";
 import { getCustomRepository } from "typeorm";
-import { UserRepository } from "../repositories/UserRepository";
+import { UserRepository } from "../../repositories/UserRepository";
 import { Service } from "typedi";
 
 const userRepo = getCustomRepository(UserRepository);

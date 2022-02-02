@@ -1,9 +1,9 @@
 import { Arg, Mutation, Resolver } from "type-graphql";
 import { Service } from "typedi";
 import { InjectRepository } from "typeorm-typedi-extensions";
-import { redis } from "../../redis";
-import { confirmUserPrefix } from "../constants/redisprefixes";
-import { UserRepository } from "../repositories/UserRepository";
+import { redis } from "../../../redis";
+import { confirmUserPrefix } from "../../constants/redisprefixes";
+import { UserRepository } from "../../repositories/UserRepository";
 
 
 
