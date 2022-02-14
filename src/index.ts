@@ -26,6 +26,9 @@ const main = async () => {
     context: ({ req, res }: any) => ({ req, res }), // pass in func to context key and create context which we can access in resolver
     // access session data in resolver via request object
     // plugins: [ApolloServerPluginLandingPageGraphQLPlayground]
+    // dataSources: () => {
+    //   return 
+    // }
   });
 
   const app = Express();

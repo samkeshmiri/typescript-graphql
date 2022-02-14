@@ -4,7 +4,7 @@ import { redis } from "../../../redis";
 import { forgetPasswordPrefix } from "../../constants/redisprefixes";
 import { ChangePasswordInput } from "./ChangePassword/ChangePasswordInput";
 import bcrypt from 'bcryptjs';
-import { MyContext } from "../../../types/MyContext";
+import { MyContext } from "../../../Types/MyContext";
 import { Service } from "typedi";
 import { InjectRepository } from "typeorm-typedi-extensions";
 import { UserRepository } from "../../repositories/UserRepository";

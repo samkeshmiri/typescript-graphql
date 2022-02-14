@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "@babel/preset-env": "^7.16.11",
+    "@onfido/api": "^2.1.1",
     "@types/express-session": "1.15.6",
     "@types/ioredis": "4.0.4",
     "apollo-server-express": "^3.6.1",

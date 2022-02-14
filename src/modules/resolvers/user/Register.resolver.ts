@@ -30,7 +30,7 @@ export class RegisterResolver {
 
         const hashedPassword = await bcrypt.hash(password, 12);
 
-        const user = await this.userRepo.findOrCreate(
+        const user = this.userRepo.create(
             {
                 firstName,
                 lastName,

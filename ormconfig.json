@@ -3,9 +3,9 @@
     "type": "postgres",
     "host": "localhost",
     "port": 5432,
-    "username": "sam",
-    "password": "test",
-    "database": "typegraphql-example",
+    "username": "postgres",
+    "password": "postgres",
+    "database": "typegraphql",
     "synchronize": true,
     "logging":true,
     "entities": [

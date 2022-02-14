@@ -6,7 +6,7 @@ import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 export class User {
 
     @Field(() => ID) // return ID type from gql use with apollo cache
-    @PrimaryGeneratedColumn() // each entity must have a primary key - this one is auto genned ("uuid") // will gen a uuid
+    @PrimaryGeneratedColumn() // each entity must have a primary key - this one is auto genned ("uuid") 
     id: number; // types of each field // int or double ? cause gql needs to know
 
     @Field()
@@ -17,20 +17,25 @@ export class User {
     @Column()
     lastName: string;
 
-    @Field() // expose it to gql schema
-    @Column("text", { unique: true })
+    @Field({defaultValue: ""}) // expose it to gql schema
+    @Column("text", { unique: true, nullable: true })
     email: string;
 
     // not stored in db becuase we didn't specify column
     @Field({description: "first and last name"})
-    name(@Root() parent: User): string {
+    fullName(@Root() parent: User): string {
         return `${parent.firstName} ${parent.lastName}`;
     }
-    @Column()
+
+    @Column({nullable: true})
     // @Min(5)
     password: string;
 
     @Column('bool', { default: false })
     confirmed: boolean;
+
+    @Field()
+    @Column("text", { nullable: true})
+    applicantId: string;
 
 }
