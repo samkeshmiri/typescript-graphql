@@ -1,4 +1,4 @@
-import { Field, ObjectType, ID, Root } from "type-graphql";
+import { Field, ObjectType, ID, Root, Int } from "type-graphql";
 import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 
 @ObjectType() // make it a type in gql and choose the Fields() we expose to the query
@@ -7,7 +7,7 @@ export class User {
 
     @Field(() => ID) // return ID type from gql use with apollo cache
     @PrimaryGeneratedColumn() // each entity must have a primary key - this one is auto genned ("uuid") 
-    id: number; // types of each field // int or double ? cause gql needs to know
+    id: number; // types of each field
 
     @Field()
     @Column() // can specify type for db here too ("int") 

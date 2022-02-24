@@ -1,8 +1,12 @@
 import { Onfido, Region } from "@onfido/api";
+import { Service } from "typedi";
 
-export const SANDBOX_KEY = "";
+@Service()
+export class OnfidoApi {
+    private SANDBOX_KEY = "api_sandbox.syGM0VuloOg._sr0GAyd0YpIILQyIAq9PSL7ZxgIQq5r";
 
-export const onfido = new Onfido({
-    apiToken: SANDBOX_KEY,
-    region: Region.EU
-});
+    onfido = new Onfido({
+        apiToken: this.SANDBOX_KEY,
+        region: Region.EU
+    });
+}

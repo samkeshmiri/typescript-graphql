@@ -1,17 +1,13 @@
+import 'reflect-metadata';
 import { ApolloServer } from "apollo-server-express";
 import Express from "express";
-import "reflect-metadata";
 import cors from "cors";
 import { redis } from "./redis";
 import session from "express-session";
 import { createSchema } from "./utils/createSchema";
-import 'reflect-metadata';
 import { createConnection, useContainer } from 'typeorm';
-import * as typeorm from "typeorm";
 import { Container } from "typeorm-typedi-extensions";
-
 useContainer(Container);
-typeorm.useContainer(Container);
 
 // import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 
@@ -68,6 +64,16 @@ const main = async () => {
     } as any),
     Express.json()
   );
+
+  app.use("https://webhook.site/6ad4dbc9-8035-4696-8b25-e581148e9b95", (req, res) => {
+    try {
+      const hookData = { recievedAt: Date(), headers: req.headers, body: req.body };
+      console.log(hookData.body);
+      res.status(200).end()
+    } catch (error) {
+      console.log(error);
+    }
+  });
 
   await apolloServer.start();
   apolloServer.applyMiddleware({ app, cors: false });

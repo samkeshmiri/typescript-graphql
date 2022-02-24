@@ -5,15 +5,15 @@ import { User } from "../../../entity/User";
 import { UserRepository } from "../../repositories/UserRepository";
 
 
-@Resolver()
-@Service()
-export class FindAllUsersResolver {
+// @Resolver()
+// @Service()
+// export class FindAllUsersResolver {
     
-    @InjectRepository(UserRepository)
-    private readonly userRepo: UserRepository;
+//     @InjectRepository(UserRepository)
+//     private readonly userRepo: UserRepository;
 
-    @Query(() => [User])
-    allUsers() {
-        return this.userRepo.findAll({});
-    }
-}
+//     @Query(() => [User])
+//     allUsers() {
+//         return this.userRepo.findAll({});
+//     }
+// }

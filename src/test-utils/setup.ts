@@ -1,5 +1,3 @@
-import { testConn } from "./testConn";
+import { connection } from "./testConn";
 
-testConn(true)
-    .then(() => process.exit())
-    .catch(error => console.log(error));
+connection.create(true).then(() => process.exit());

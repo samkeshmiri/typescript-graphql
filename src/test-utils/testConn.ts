@@ -1,18 +1,22 @@
-import { createConnection } from "typeorm"
+import { createConnection, getConnection } from "typeorm"
+import { User } from "../entity/User";
 
-export const testConn = 
-    (drop: boolean = false) => {
-    return createConnection({
-        name: "default",
-        type: "postgres",
-        host: "localhost",
-        port: 5432,
-        username: "sam",
-        password: "test",
-        database: "typegraphql-example-test",
-        synchronize: drop,
-        logging: drop, // no pgsql commands in console
-        dropSchema: true,
-        entities: [__dirname + "/../entity/*.*" ] 
-    });
+export const connection = {
+    create: (drop = false) => {
+        return createConnection({
+            name: "default",
+            type: "postgres",
+            host: "localhost",
+            port: 5432,
+            username: "postgres",
+            password: "postgres",
+            database: "typegraphql",
+            synchronize: drop,
+            dropSchema: drop,
+            entities: [User]
+        })
+    },
+    close: () => {
+        return getConnection().close();
+    }
 }

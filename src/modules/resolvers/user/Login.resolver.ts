@@ -5,12 +5,14 @@ import { MyContext } from "src/Types/MyContext";
 import { getCustomRepository } from "typeorm";
 import { UserRepository } from "../../repositories/UserRepository";
 import { Service } from "typedi";
-
-const userRepo = getCustomRepository(UserRepository);
+import { InjectRepository } from "typeorm-typedi-extensions";
 
 @Resolver()
 @Service()
 export class LoginResolver {
+
+    @InjectRepository(UserRepository)
+    private readonly userRepo: UserRepository;
 
     @Mutation(() => User, { nullable: true })
     async login(
@@ -18,7 +20,7 @@ export class LoginResolver {
         @Arg("password") password: string,
         @Ctx() ctx: MyContext): Promise<User | null> {
 
-        const user = await userRepo.findOne({ where: { email } });
+        const user = await this.userRepo.findOne({ where: { email } });
 
         if (!user) {
             return null;
@@ -31,7 +33,7 @@ export class LoginResolver {
         }
 
         if (!user.confirmed) {
-            return null; // could throw error
+         // could throw error
         }
 
         ctx.req.session.userId = user.id;

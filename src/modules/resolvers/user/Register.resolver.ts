@@ -1,9 +1,9 @@
 import { Arg, Mutation, Query, Resolver, UseMiddleware } from "type-graphql";
-import bcrypt from 'bcryptjs';
+import bcrypt, { compareSync } from 'bcryptjs';
 import { User } from "../../../entity/User";
 import { RegisterInput } from "./Register/RegisterInput";
-import { isAuth } from "../../middleware/isAuth";
-import { logger } from "../../middleware/logger";
+// import { isAuth } from "../../middleware/isAuth";
+// import { logger } from "../../middleware/logger";
 // import { createConfirmationUrl } from "../../utils/createConfirmationUrl";
 // import { sendEmail } from "../../utils/sendEmail";
 import { UserRepository } from "../../repositories/UserRepository";
@@ -18,26 +18,28 @@ export class RegisterResolver {
     private readonly userRepo: UserRepository;
 
     // @Authorized() // cookie cleared means you cant run it without being logged in
-    @Query(() => String, { nullable: true, name: "helloWorld" }) // we want the query to return a string // option is to set the name different to the function
-    @UseMiddleware(isAuth, logger) // diff way to authenticate with our own method
-    async hello() { // hello would be name of the query in gql unless name override above 
-        return "Hello World";
-    }
+    // @Query(() => String, { nullable: true, name: "helloWorld" }) // we want the query to return a string // option is to set the name different to the function
+    // @UseMiddleware(isAuth, logger) // diff way to authenticate with our own method
+    // async hello() { // hello would be name of the query in gql unless name override above 
+    //     return "Hello World";
+    // }
 
-    @Mutation(() => User, { nullable: false, name: "registerUser" }) // we want the query to return a string // option is to set the mutation name different to the function
+    @Mutation(() => User, { name: "registerUser" }) // we want the query to return a string // option is to set the mutation name different to the function
     async register(
         @Arg('input') { firstName, lastName, email, password }: RegisterInput): Promise<User> {
 
         const hashedPassword = await bcrypt.hash(password, 12);
 
-        const user = this.userRepo.create(
+        const user = await this.userRepo.save(
             {
                 firstName,
                 lastName,
                 email,
                 password: hashedPassword
             }
-        )
+        );
+
+        console.log(`created user id ${user.id}`);
        // await sendEmail(email, await createConfirmationUrl(user.id));
 
         return user;
